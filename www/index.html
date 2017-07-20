@@ -106,22 +106,21 @@
 			alert('hello');
 			var fbLoginSuccess = function (userData) {
 					  console.log("UserInfo: ", userData);
+					  alert("user_data:" + userData +);
+					   facebookConnectPlugin.getAccessToken(function(token) {
+							console.log("Token: " + token);
+						  });
 					}
 
-					facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
-					  function loginError (error) {
-						console.error(error)
-					  }
-					);
+				facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
+				  function loginError (error) {
+					console.error(error)
+				  }
+				);
 			facebookConnectPlugin.api("<user-id>/?fields=id,email", ["user_birthday"],
 				  function onSuccess (result) {
 					console.log("Result: ", result);
-					/* logs:
-					  {
-						"id": "000000123456789",
-						"email": "myemail@example.com"
-					  }
-					*/
+					
 				  }, function onError (error) {
 					console.error("Failed: ", error);
 				  }
