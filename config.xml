@@ -4,7 +4,7 @@
     <description>
         Hello World sample application that responds to the deviceready event.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
+    <author email="support@phonegap.com" href="https://app.roootsj.com">
         PhoneGap Team
     </author>
     <content src="index.html" />
@@ -114,4 +114,9 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <engine name="android" spec="~6.1.2" />
+    <plugin name="cordova-plugin-facebook4" spec="~1.9.1">
+        <variable name="APP_ID" value="674975182712952" />
+        <variable name="APP_NAME" value="cordova" />
+    </plugin>
 </widget>
