@@ -104,25 +104,28 @@
 
 		function onDeviceReady(){
 			alert('hello');
-			CordovaFacebook.login({
-			   permissions: ['email', 'public_profile','user_friends'],
-				   onSuccess: function(result) {
-					  if(result.declined.length > 0) {
-				
-						 alert("The User declined something!");
+			var fbLoginSuccess = function (userData) {
+					  console.log("UserInfo: ", userData);
+					}
+
+					facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
+					  function loginError (error) {
+						console.error(error)
 					  }
-					  /* ... */
-					},
-					
-				   onFailure: function(result) {
-					  if(result.cancelled) {
-					
-						 alert("The user doesn't like my app");
-					  } else if(result.error) {
-						 alert("There was an error:" + result.errorLocalized);
+					);
+			facebookConnectPlugin.api("<user-id>/?fields=id,email", ["user_birthday"],
+				  function onSuccess (result) {
+					console.log("Result: ", result);
+					/* logs:
+					  {
+						"id": "000000123456789",
+						"email": "myemail@example.com"
 					  }
-				   }
-			});
+					*/
+				  }, function onError (error) {
+					console.error("Failed: ", error);
+				  }
+				);
 				
 			document.addEventListener("resume", onResume, false);
 			
